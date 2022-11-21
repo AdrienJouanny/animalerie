@@ -1,0 +1,22 @@
+{% extends 'animalerie/base.html' %}
+
+{% block content %}
+<div class="content container">
+
+{% if messages%}
+<div class="messages">
+    {% for message in messages %}
+    <h4 {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</h4>
+        {% endfor %}
+</div>
+{% endif %}
+
+<form method = "POST" class="post-form" enctype="multipart/form-data"> 
+    {% csrf_token %} 
+    <p>Pour ajouter un animal, remplir les champs suivants  : (placer l'animal dans la "Litière" avec l'état "Affamé" pour que ca soit + simple)</p>
+    {{ form.as_p }} 
+    <button type="submit" class="btn btn-ok">Ajouter</button> 
+    <a href="{% url 'post_list' %}" class="btn btn-primary" role="button">Retour</a>
+</form> 
+</div>
+{% endblock %}
